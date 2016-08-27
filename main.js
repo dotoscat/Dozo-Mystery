@@ -34,10 +34,12 @@ class Puzzle{
     let heightPiece = imageHeight / width;
     this.pieces = new Array(imageHeight);
     let pieces = this.pieces;
+    this.backgrounds = [];
     for(let y = 0; y < heightPiece; y++){
       pieces[y] = new Array(imageWidth);
       for(let x = 0; x < widthPiece; x++){
-        game.add.image(width*x, height*y, 'puzzleBackground');
+        let backgroundImage = game.add.image(width*x, height*y, 'puzzleBackground');
+        this.backgrounds.push(backgroundImage);
         pieces[y][x] = new Piece(width*x, height*y, width, height, imageKey, this);
       }
     }
