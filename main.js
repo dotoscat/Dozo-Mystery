@@ -37,6 +37,11 @@ class Puzzle{
       }
     }
   }
+
+  getPiece(x, y){
+    return this.pieces[y][x];
+  }
+
 }
 
 const WIDTH = 640;
