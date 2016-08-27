@@ -5,15 +5,17 @@ class Piece{
     this.value = 0;
     this.fromPuzzle = fromPuzzle;
     this.puzzle = null;
-    this.image = game.add.image(x, y, imageKey);
+    let image = game.add.image(x, y, imageKey);
+    this.image = image;
     let rectangle = new Phaser.Rectangle(x, y, width, height);
-    this.image.crop(rectangle);
-    this.image.updateCrop();
-    this.image.inputEnabled = true;
-    this.image.input.enableDrag(true);
-    this.image.input.bringToTop = true;
-    this.image.input.useHandCursor = true;
-    this.image.data = this;
+    image.crop(rectangle);
+    image.updateCrop();
+    image.inputEnabled = true;
+    image.input.enableDrag(true);
+    image.input.bringToTop = true;
+    image.input.useHandCursor = true;
+    image.data = this;
+    image.events.onDragStop.add(Piece.omgDragging, this);
   }
 
   isPuzzle(){
@@ -24,8 +26,8 @@ class Piece{
     return this.fromPuzzle;
   }
 
-  static omgDragging(){
-
+  static omgDragging(thi, object){
+    console.log("stop dragging...", thi, object);
   }
 
 }
