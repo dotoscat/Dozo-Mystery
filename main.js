@@ -25,6 +25,8 @@ class Piece{
 class Puzzle{
   constructor(imageKey, width, height){
     //width and height are the size of the piece
+    this.width = width;
+    this.height = height;
     let image = game.cache.getImage(imageKey);
     let imageWidth = image.width;
     let imageHeight = image.height;
@@ -54,7 +56,7 @@ let images = {};
 function preload(){
   console.log('preload');
   game.load.image('psmile', 'psmile.png');
-
+  game.load.image('puzzleBackground', 'puzzleBackground.png');
 }
 
 function create(){
