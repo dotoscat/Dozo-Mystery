@@ -5,7 +5,7 @@ class Piece{
     this.value = 0;
     this.fromPuzzle = fromPuzzle;
     this.puzzle = null;
-    this.sprite = game.add.sprite(0, 0, imageKey);
+    this.sprite = game.add.sprite(x, y, imageKey);
     let rectangle = new Phaser.Rectangle(x, y, width, height);
     this.sprite.crop(rectangle);
     this.sprite.updateCrop();
