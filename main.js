@@ -5,15 +5,15 @@ class Piece{
     this.value = 0;
     this.fromPuzzle = fromPuzzle;
     this.puzzle = null;
-    this.sprite = game.add.image(x, y, imageKey);
+    this.image = game.add.image(x, y, imageKey);
     let rectangle = new Phaser.Rectangle(x, y, width, height);
-    this.sprite.crop(rectangle);
-    this.sprite.updateCrop();
-    this.sprite.inputEnabled = true;
-    this.sprite.input.enableDrag(true);
-    this.sprite.input.bringToTop = true;
-    this.sprite.input.useHandCursor = true;
-    this.sprite.data = this;
+    this.image.crop(rectangle);
+    this.image.updateCrop();
+    this.image.inputEnabled = true;
+    this.image.input.enableDrag(true);
+    this.image.input.bringToTop = true;
+    this.image.input.useHandCursor = true;
+    this.image.data = this;
   }
 
   isPuzzle(){
@@ -37,7 +37,8 @@ class Puzzle{
     for(let y = 0; y < heightPiece; y++){
       pieces[y] = new Array(imageWidth);
       for(let x = 0; x < widthPiece; x++){
-        pieces[y][x] = new Piece(width*x, width*y, width, height, imageKey, this);
+        game.add.image(width*x, height*y, 'puzzleBackground');
+        pieces[y][x] = new Piece(width*x, height*y, width, height, imageKey, this);
       }
     }
   }
