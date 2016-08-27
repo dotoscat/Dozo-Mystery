@@ -11,6 +11,8 @@ class Piece{
     this.sprite.updateCrop();
     this.sprite.inputEnabled = true;
     this.sprite.input.enableDrag(true);
+    this.sprite.input.bringToTop = true;
+    this.sprite.input.useHandCursor = true;
     this.sprite.data = this;
   }
 
