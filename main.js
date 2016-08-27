@@ -20,6 +20,14 @@ class Piece{
     return this.puzzle !== null;
   }
 
+  getParentPuzzle(){
+    return this.fromPuzzle;
+  }
+
+  static omgDragging(){
+
+  }
+
 }
 
 class Puzzle{
