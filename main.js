@@ -1,11 +1,11 @@
 "use strict";
 
 class Piece{
-  constructor(x, y, width, height, imageKey){
+  constructor(x, y, width, height, imageKey, fromPuzzle){
     this.value = 0;
-    this.fromPuzzle = null;
+    this.fromPuzzle = fromPuzzle;
     this.puzzle = null;
-    this.sprite = game.add.sprite(0,0, imageKey);
+    this.sprite = game.add.sprite(0, 0, imageKey);
     let rectangle = new Phaser.Rectangle(x, y, width, height);
     this.sprite.crop(rectangle);
     this.sprite.updateCrop();
@@ -18,6 +18,25 @@ class Piece{
     return this.puzzle !== null;
   }
 
+}
+
+class Puzzle{
+  constructor(imageKey, width, height){
+    //width and height are the size of the piece
+    let image = game.cache.getImage(imageKey);
+    let imageWidth = image.width;
+    let imageHeight = image.height;
+    let widthPiece = imageWidth / width;
+    let heightPiece = imageHeight / width;
+    this.pieces = new Array(imageHeight);
+    let pieces = this.pieces;
+    for(let y = 0; y < heightPiece; y++){
+      pieces[y] = new Array(imageWidth);
+      for(let x = 0; x < widthPiece; x++){
+        pieces[y][x] = new Piece(width*x, width*y, width, height, imageKey, this);
+      }
+    }
+  }
 }
 
 const WIDTH = 640;
@@ -33,8 +52,7 @@ function preload(){
 
 function create(){
   console.log('create');
-  new Piece(0, 0, 32, 32, 'psmile');
-  new Piece(32, 0, 32, 32, 'psmile');
+  new Puzzle('psmile', 32, 32);
 }
 
 function update(){
