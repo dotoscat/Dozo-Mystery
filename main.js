@@ -1,9 +1,17 @@
 "use strict";
 
 class Piece{
-  constructor(){
+  constructor(x, y, width, height, imageKey){
     this.value = 0;
+    this.fromPuzzle = null;
     this.puzzle = null;
+    this.sprite = game.add.sprite(0,0, imageKey);
+    let rectangle = new Phaser.Rectangle(x, y, width, height);
+    this.sprite.crop(rectangle);
+    this.sprite.updateCrop();
+    this.sprite.inputEnabled = true;
+    this.sprite.input.enableDrag(true);
+    this.sprite.data = this;
   }
 
   isPuzzle(){
@@ -25,11 +33,8 @@ function preload(){
 
 function create(){
   console.log('create');
-  let aPiece = game.add.sprite(0,0, 'psmile');
-  let rectangle = new Phaser.Rectangle(0, 0, 32, 32);
-  aPiece.crop(rectangle);
-  aPiece.updateCrop();
-  //images['psmile'] = game.add.image('psmile');
+  new Piece(0, 0, 32, 32, 'psmile');
+  new Piece(32, 0, 32, 32, 'psmile');
 }
 
 function update(){
