@@ -34,11 +34,13 @@ class Piece{
   }
 
   static stopDragging(image, pointer){
-    console.log(pointer.positionUp, image.position);
     let piece = image.data;
     let puzzle = piece.getParentPuzzle();
     if (!puzzle.setPiece(piece, pointer)){
       piece.resetPosition();
+    }
+    if (puzzle.isSolved()){
+      console.log("This puzzle is solved!");
     }
   }
 

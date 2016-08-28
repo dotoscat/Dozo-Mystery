@@ -9,6 +9,8 @@ class Puzzle{
     let imageHeight = image.height;
     let nPieceWidth = imageWidth / pieceWidth;
     let nPieceHeight = imageHeight / pieceHeight;
+    this.nPieceWidth = nPieceWidth;
+    this.nPieceHeight = nPieceHeight;
     this.rect = new Phaser.Rectangle(puzzleX, puzzleY, imageWidth, imageHeight);
     this.area = new Phaser.Rectangle(puzzleX, puzzleY, imageWidth, imageHeight);
     this.area.inflate(64, 64);
@@ -39,6 +41,16 @@ class Puzzle{
         currentPieces[y][x] = null;
       }
     }
+  }
+
+  isSolved(){
+    let solved = true;
+    for (let y = 0; y < this.nPieceHeight && solved === true; y++){
+      for (let x = 0; x < this.nPieceWidth && solved === true; x++){
+        solved = solved && (this.pieces[y][x] === this.currentPieces[y][x]);
+      }
+    }
+    return solved;
   }
 
   setPiece(piece, point){
