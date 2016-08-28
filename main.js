@@ -13,7 +13,7 @@ function preload(){
 
 function create(){
   console.log('create');
-  new Puzzle('psmile', 32, 32);
+  new Puzzle('psmile', 64, 64, 32, 32);
 }
 
 function update(){

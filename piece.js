@@ -1,13 +1,14 @@
 'use strict';
 
 class Piece{
-  constructor(x, y, width, height, imageKey, fromPuzzle){
+  constructor(positionX, positionY, cropX, cropY, width, height, imageKey, fromPuzzle){
     this.value = 0;
     this.fromPuzzle = fromPuzzle;
     this.puzzle = null;
-    let image = game.add.image(x, y, imageKey);
+    let image = game.add.image(positionX, positionY, imageKey);
     this.image = image;
-    let rectangle = new Phaser.Rectangle(x, y, width, height);
+    //this rectangle is used for crop
+    let rectangle = new Phaser.Rectangle(cropX, cropY, width, height);
     image.crop(rectangle);
     image.updateCrop();
     image.inputEnabled = true;
