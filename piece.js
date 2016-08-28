@@ -1,7 +1,8 @@
 'use strict';
 
 class Piece{
-  constructor(positionX, positionY, cropX, cropY, width, height, imageKey, fromPuzzle){
+  constructor(positionX, positionY, cropX, cropY, width, height,
+    imageKey, fromPuzzle){
     this.value = 0;
     this.fromPuzzle = fromPuzzle;
     this.puzzle = null;
@@ -28,7 +29,7 @@ class Piece{
   }
 
   static stopDragging(image, pointer){
-    console.log(pointer.positionUp);
+    console.log(pointer.positionUp, image.position);
     let piece = image.data;
     let puzzle = piece.getParentPuzzle();
     

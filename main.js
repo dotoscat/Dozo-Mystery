@@ -19,6 +19,8 @@ function preload(){
 function create(){
   console.log('create');
   mainPuzzle = new Puzzle('psmile', 64, 64, 32, 32);
+  mainPuzzle.resetCurrentPieces();
+  mainPuzzle.randomizePieces(64);
 }
 
 function update(){

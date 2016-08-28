@@ -10,6 +10,8 @@ class Puzzle{
     let nPieceWidth = imageWidth / pieceWidth;
     let nPieceHeight = imageHeight / pieceHeight;
     this.rect = new Phaser.Rectangle(puzzleX, puzzleY, imageWidth, imageHeight);
+    this.area = new Phaser.Rectangle(puzzleX, puzzleY, imageWidth, imageHeight);
+    this.area.inflate(64, 64);
     let pieces = new Array(nPieceHeight);
     this.pieces = pieces;
     this.backgrounds = [];
@@ -24,8 +26,8 @@ class Puzzle{
         let backgroundImage = game.add.image(finalX, finalY,
           'puzzleBackground');
         this.backgrounds.push(backgroundImage);
-        pieces[y][x] = new Piece(finalX, finalY, cropX, cropY, pieceWidth, pieceHeight,
-          imageKey, this);
+        pieces[y][x] = new Piece(finalX, finalY, cropX, cropY,
+          pieceWidth, pieceHeight, imageKey, this);
       }
     }
     //create the current pieces, a multidimensional array
@@ -49,6 +51,25 @@ class Puzzle{
         row[x] = null;
       }
     }
+
+  }
+
+  randomizePieces(space){
+    let area = this.area;
+    for (let row of this.pieces){
+      for (let x = 0; x < row.length; x++){
+        let posX = 0;
+        let posY = 0;
+        do{
+          posX = getRandomInteger(area.x, area.right);
+          posY = getRandomInteger(area.y, area.bottom);
+        }while(Phaser.Rectangle.contains(this.rect, posX, posY));
+
+        row[x].image.position.set(posX, posY);
+
+      }
+    }
+    console.log("this.rect(2)", this.rect);
   }
 
 }
