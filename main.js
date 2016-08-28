@@ -6,6 +6,10 @@ const HEIGHT = 480;
 let images = {};
 let mainPuzzle = null;
 
+function getRandomInteger(min, max){
+  return Math.floor( Math.random() * (max - min) + min );
+}
+
 function preload(){
   console.log('preload');
   game.load.image('psmile', 'psmile.png');
