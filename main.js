@@ -4,6 +4,7 @@ const WIDTH = 640;
 const HEIGHT = 480;
 
 let images = {};
+let mainPuzzle = null;
 
 function preload(){
   console.log('preload');
@@ -13,7 +14,7 @@ function preload(){
 
 function create(){
   console.log('create');
-  new Puzzle('psmile', 64, 64, 32, 32);
+  mainPuzzle = new Puzzle('psmile', 64, 64, 32, 32);
 }
 
 function update(){

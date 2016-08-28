@@ -34,13 +34,21 @@ class Puzzle{
     for (let y = 0; y < nPieceWidth; y++) {
       currentPieces[y] = new Array(nPieceWidth);
       for (let x = 0; x < nPieceHeight; x++) {
-        currentPieces[x] = null;
+        currentPieces[y][x] = null;
       }
     }
   }
 
   getPiece(x, y){
     return this.pieces[y][x];
+  }
+
+  resetCurrentPieces(){
+    for (let row of this.currentPieces){
+      for (let x = 0; x < row.length; x++){
+        row[x] = null;
+      }
+    }
   }
 
 }
