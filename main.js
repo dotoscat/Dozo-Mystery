@@ -27,7 +27,7 @@ class Piece{
   }
 
   static omgDragging(thi, object){
-    console.log("stop dragging...", thi, object);
+    console.log(object.positionDown);
   }
 
 }
