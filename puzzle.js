@@ -10,12 +10,13 @@ class Puzzle{
     let nPieceWidth = imageWidth / pieceWidth;
     let nPieceHeight = imageHeight / pieceHeight;
     this.rect = new Phaser.Rectangle(puzzleX, puzzleY, imageWidth, imageHeight);
-    let pieces = new Array(imageHeight);
+    let pieces = new Array(nPieceHeight);
     this.pieces = pieces;
     this.backgrounds = [];
-    for(let y = 0; y < nPieceHeight; y++){
-      pieces[y] = new Array(imageWidth);
-      for(let x = 0; x < nPieceWidth; x++){
+    //fill pieces and backgrounds
+    for (let y = 0; y < nPieceHeight; y++){
+      pieces[y] = new Array(nPieceWidth);
+      for (let x = 0; x < nPieceWidth; x++){
         const finalX = puzzleX + pieceWidth * x;
         const finalY = puzzleY + pieceHeight * y;
         const cropX = pieceWidth * x;
@@ -27,10 +28,19 @@ class Puzzle{
           imageKey, this);
       }
     }
+    //create the current pieces, a multidimensional array
+    let currentPieces = new Array(nPieceHeight);
+    this.currentPieces = currentPieces;
+    for (let y = 0; y < nPieceWidth; y++) {
+      currentPieces[y] = new Array(nPieceWidth);
+      for (let x = 0; x < nPieceHeight; x++) {
+        currentPieces[x] = null;
+      }
+    }
   }
 
   getPiece(x, y){
     return this.pieces[y][x];
   }
-  
+
 }
