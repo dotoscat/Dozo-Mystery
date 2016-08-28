@@ -27,8 +27,11 @@ class Piece{
     return this.fromPuzzle;
   }
 
-  static stopDragging(piece, pointer){
-    console.log(pointer.positionDown);
+  static stopDragging(image, pointer){
+    console.log(pointer.positionUp);
+    let piece = image.data;
+    let puzzle = piece.getParentPuzzle();
+    
   }
 
 }

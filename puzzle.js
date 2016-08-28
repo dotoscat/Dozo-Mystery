@@ -32,5 +32,5 @@ class Puzzle{
   getPiece(x, y){
     return this.pieces[y][x];
   }
-
+  
 }
