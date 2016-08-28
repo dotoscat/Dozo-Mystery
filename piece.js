@@ -16,7 +16,7 @@ class Piece{
     image.input.bringToTop = true;
     image.input.useHandCursor = true;
     image.data = this;
-    image.events.onDragStop.add(Piece.omgDragging, this);
+    image.events.onDragStop.add(Piece.stopDragging, this);
   }
 
   isPuzzle(){
@@ -27,8 +27,8 @@ class Piece{
     return this.fromPuzzle;
   }
 
-  static omgDragging(thi, object){
-    console.log(object.positionDown);
+  static stopDragging(piece, pointer){
+    console.log(pointer.positionDown);
   }
 
 }
