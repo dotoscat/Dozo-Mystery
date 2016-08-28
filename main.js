@@ -5,6 +5,7 @@ const HEIGHT = 480;
 
 let images = {};
 let mainPuzzle = null;
+let catPuzzle = null;
 
 function getRandomInteger(min, max){
   return Math.floor( Math.random() * (max - min) + min );
@@ -13,6 +14,7 @@ function getRandomInteger(min, max){
 function preload(){
   console.log('preload');
   game.load.image('psmile', 'psmile.png');
+  game.load.image('cat', 'cat.png');
   game.load.image('puzzleBackground', 'puzzleBackground.png');
 }
 

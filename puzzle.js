@@ -55,13 +55,25 @@ class Puzzle{
 
   setPiece(piece, point){
     let done = false;
+    //if piece is out of the puzzle...
     if (!Phaser.Rectangle.containsPoint(this.rect, point)) {
+      for (let row of this.currentPieces) {
+        for (let x = 0; x < row.length; x++){
+          if (row[x] === piece){
+            row[x] = null;
+          }
+        }
+      }
+      done = true;
       return done;
     }
     let pixelX = point.x - this.rect.x;
     let pixelY = point.y - this.rect.y;
     let x = Math.floor(pixelX / this.pieceWidth);
     let y = Math.floor(pixelY / this.pieceHeight);
+    if (this.currentPieces[y][x] !== null){
+      return done;//return false
+    }
     this.currentPieces[y][x] = piece;
     piece.image.position.set(this.rect.x + x * this.pieceWidth,
       this.rect.y + y * this.pieceHeight);
