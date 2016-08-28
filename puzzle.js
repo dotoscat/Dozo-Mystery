@@ -41,6 +41,22 @@ class Puzzle{
     }
   }
 
+  setPiece(piece, point){
+    let done = false;
+    if (!Phaser.Rectangle.containsPoint(this.rect, point)) {
+      return done;
+    }
+    let pixelX = point.x - this.rect.x;
+    let pixelY = point.y - this.rect.y;
+    let x = Math.floor(pixelX / this.pieceWidth);
+    let y = Math.floor(pixelY / this.pieceHeight);
+    this.currentPieces[y][x] = piece;
+    piece.image.position.set(this.rect.x + x * this.pieceWidth,
+      this.rect.y + y * this.pieceHeight);
+    done = true;
+    return done;
+  }
+
   getPiece(x, y){
     return this.pieces[y][x];
   }
@@ -69,7 +85,7 @@ class Puzzle{
 
       }
     }
-    console.log("this.rect(2)", this.rect);
+
   }
 
 }

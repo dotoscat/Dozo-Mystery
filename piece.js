@@ -28,11 +28,18 @@ class Piece{
     return this.fromPuzzle;
   }
 
+  resetPosition(){
+    let pos = this.image.input.dragStartPoint;
+    this.image.position.set(pos.x, pos.y);
+  }
+
   static stopDragging(image, pointer){
     console.log(pointer.positionUp, image.position);
     let piece = image.data;
     let puzzle = piece.getParentPuzzle();
-    
+    if (!puzzle.setPiece(piece, pointer)){
+      piece.resetPosition();
+    }
   }
 
 }
