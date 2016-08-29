@@ -12,7 +12,7 @@ function getRandomInteger(min, max){
 }
 
 function preload(){
-  console.log('preload');
+  game.load.image('buttonBackground', 'buttonBackground.png');
   game.load.image('psmile', 'psmile.png');
   game.load.image('cat', 'cat.png');
   game.load.image('puzzleBackground', 'puzzleBackground.png');
@@ -24,11 +24,6 @@ function create(){
   mainPuzzle.resetCurrentPieces();
   mainPuzzle.randomizePieces();
   mainPuzzle.setPosition(128, 128);
-  /*
-  catPuzzle = new Puzzle('kitty!', 'cat', 255, 64, 32, 32);
-  catPuzzle.randomizePieces(64);
-  mainPuzzle.getPiece(1,1).setPuzzle(catPuzzle);
-  */
 }
 
 function update(){
