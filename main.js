@@ -6,6 +6,7 @@ const HEIGHT = 480;
 let puzzles = {};
 let puzzleName = null;
 let currentPuzzle = null;
+let button = null;
 
 function getRandomInteger(min, max){
   return Math.floor( Math.random() * (max - min) + min );
@@ -28,7 +29,6 @@ function preload(){
 }
 
 function create(){
-  console.log('create');
   let mainPuzzle = new Puzzle('a smile', 'psmile', 32, 32);
   puzzles['mainPuzzle'] = mainPuzzle;
   mainPuzzle.resetCurrentPieces();
@@ -36,6 +36,8 @@ function create(){
   mainPuzzle.setPosition(128, 128);
   puzzleName = game.add.text(0, 0, '', {fill: 'white'});
   setPuzzle(mainPuzzle);
+  button = new Button(250, 250, 'buttonBackground',
+  () => {console.log("hello...");}, "Push me!");
 }
 
 function update(){
