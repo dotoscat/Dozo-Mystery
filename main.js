@@ -3,12 +3,21 @@
 const WIDTH = 640;
 const HEIGHT = 480;
 
-let images = {};
-let mainPuzzle = null;
-let catPuzzle = null;
+let puzzles = {};
+let puzzleName = null;
+let currentPuzzle = null;
 
 function getRandomInteger(min, max){
   return Math.floor( Math.random() * (max - min) + min );
+}
+
+function setPuzzle(puzzle){
+  if (currentPuzzle !== null) {
+    currentPuzzle.hide();
+  }
+  currentPuzzle = puzzle;
+  currentPuzzle.show();
+  puzzleName.setText(puzzle.getName());
 }
 
 function preload(){
@@ -20,10 +29,13 @@ function preload(){
 
 function create(){
   console.log('create');
-  mainPuzzle = new Puzzle('a smile', 'psmile', 32, 32);
+  let mainPuzzle = new Puzzle('a smile', 'psmile', 32, 32);
+  puzzles['mainPuzzle'] = mainPuzzle;
   mainPuzzle.resetCurrentPieces();
   mainPuzzle.randomizePieces();
   mainPuzzle.setPosition(128, 128);
+  puzzleName = game.add.text(0, 0, '', {fill: 'white'});
+  setPuzzle(mainPuzzle);
 }
 
 function update(){

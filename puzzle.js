@@ -62,6 +62,10 @@ class Puzzle{
     this.rect.y = y;
   }
 
+  getName(){
+    return this.name;
+  }
+
   isSolved(){
     let solved = true;
     for (let y = 0; y < this.nPieceHeight && solved === true; y++){
