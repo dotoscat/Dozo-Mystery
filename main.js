@@ -22,10 +22,12 @@ function create(){
   console.log('create');
   mainPuzzle = new Puzzle('a smile', 'psmile', 64, 64, 32, 32);
   mainPuzzle.resetCurrentPieces();
-  mainPuzzle.randomizePieces(64);
+  mainPuzzle.randomizePieces();
+  /*
   catPuzzle = new Puzzle('kitty!', 'cat', 255, 64, 32, 32);
   catPuzzle.randomizePieces(64);
   mainPuzzle.getPiece(1,1).setPuzzle(catPuzzle);
+  */
 }
 
 function update(){
