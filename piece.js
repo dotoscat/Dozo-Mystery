@@ -18,8 +18,10 @@ class Piece{
     image.bringToTop();
     image.input.bringToTop = true;
     image.input.useHandCursor = true;
+    image.input.dragStopBlocksInput = true;
     image.data = this;
     image.events.onDragStop.add(Piece.stopDragging, this);
+    image.events.onInputUp.add(Piece.onClick, this);
   }
 
   isPuzzle(){
@@ -56,6 +58,10 @@ class Piece{
     if (puzzle.isSolved()){
       console.log("This puzzle is solved!");
     }
+  }
+
+  static onClick(image, pointer){
+    console.log("piece onClick", image, pointer);
   }
 
 }
