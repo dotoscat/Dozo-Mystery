@@ -8,7 +8,7 @@ var levels = {
     height: 32,
     pieces: [
       [null, null, null],
-      [null, null, null],
+      [null, 'cat', null],
       [null, null, null]
     ]
   },
