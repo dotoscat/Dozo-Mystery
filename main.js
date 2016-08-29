@@ -48,6 +48,7 @@ function setPuzzle(puzzle){
     currentPuzzle.hide();
   }
   currentPuzzle = puzzle;
+  if (puzzle)
   currentPuzzle.show();
   puzzleName.setText(puzzle.getName());
   puzzleName.x = (WIDTH - puzzleName.width) / 2;
@@ -70,6 +71,7 @@ function create(){
   puzzleName = game.add.text(0, 0, '', {fill: 'white'});
   button = new Button(250, 300, 'buttonBackground',
   () => {console.log("hello...");}, "Push me!");
+  button.hide();
   loadLevels();
   setPuzzle(puzzles['main']);
 }

@@ -10,4 +10,12 @@ class Button{
     this.group.position.set(x, y);
   }
 
+  show(){
+    this.group.visible = true;
+  }
+
+  hide(){
+    this.group.visible = false;
+  }
+
 }
