@@ -23,6 +23,9 @@ function create(){
   mainPuzzle = new Puzzle('psmile', 64, 64, 32, 32);
   mainPuzzle.resetCurrentPieces();
   mainPuzzle.randomizePieces(64);
+  catPuzzle = new Puzzle('cat', 255, 64, 32, 32);
+  catPuzzle.randomizePieces(64);
+  mainPuzzle.getPiece(1,1).setPuzzle(catPuzzle);
 }
 
 function update(){

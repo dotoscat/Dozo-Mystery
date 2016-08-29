@@ -14,6 +14,7 @@ class Piece{
     image.updateCrop();
     image.inputEnabled = true;
     image.input.enableDrag(true);
+    image.bringToTop();
     image.input.bringToTop = true;
     image.input.useHandCursor = true;
     image.data = this;
@@ -22,6 +23,18 @@ class Piece{
 
   isPuzzle(){
     return this.puzzle !== null;
+  }
+
+  setPuzzle(puzzle){
+    this.puzzle = puzzle;
+    if (puzzle !== null && !puzzle.isSolved()){
+      this.image.alpha = 0.5;
+      this.image.input.draggable = false;
+    }
+    else if ((puzzle !== null && puzzle.isSolved()) || puzzle === null){
+      this.image.alpha = 1.0;
+      this.image.input.draggable = true;
+    }
   }
 
   getParentPuzzle(){
