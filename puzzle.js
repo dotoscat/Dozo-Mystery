@@ -94,8 +94,7 @@ class Puzzle{
       return done;//return false
     }
     this.currentPieces[y][x] = piece;
-    piece.image.position.set(this.rect.x + x * this.pieceWidth,
-      this.rect.y + y * this.pieceHeight);
+    piece.image.position.set(x * this.pieceWidth, y * this.pieceHeight);
     done = true;
     return done;
   }
