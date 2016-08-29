@@ -1,7 +1,8 @@
 'use strict';
 
 class Puzzle{
-  constructor(imageKey, puzzleX, puzzleY, pieceWidth, pieceHeight){
+  constructor(name, imageKey, puzzleX, puzzleY, pieceWidth, pieceHeight){
+    this.name = name;
     this.pieceWidth = pieceWidth;
     this.pieceHeight = pieceHeight;
     let image = game.cache.getImage(imageKey);
