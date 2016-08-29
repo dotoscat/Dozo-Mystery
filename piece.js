@@ -28,6 +28,10 @@ class Piece{
     return this.puzzle !== null;
   }
 
+  getPuzzle(){
+    return this.puzzle;
+  }
+
   setPuzzle(puzzle){
     this.puzzle = puzzle;
     if (puzzle !== null && !puzzle.isSolved()){
@@ -57,11 +61,16 @@ class Piece{
     }
     if (puzzle.isSolved()){
       console.log("This puzzle is solved!");
+      //back from this puzzle
     }
   }
 
   static onClick(image, pointer){
     console.log("piece onClick", image, pointer);
+    let piece = image.data;
+    if (piece.isPuzzle()) {
+      console.log("Another puzzle!");
+    }
   }
 
 }
