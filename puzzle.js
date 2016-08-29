@@ -14,11 +14,12 @@ class Puzzle{
     this.nPieceWidth = nPieceWidth;
     this.nPieceHeight = nPieceHeight;
     this.rect = new Phaser.Rectangle(0, 0, imageWidth, imageHeight);
-    this.area = new Phaser.Rectangle(0, 0, imageWidth, imageHeight);
-    this.area.inflate(64, 64);
+    this.areaPieces = new Phaser.Rectangle(imageWidth + pieceWidth, 0,
+      imageWidth, imageHeight);
     let pieces = new Array(nPieceHeight);
     this.pieces = pieces;
-    this.backgroundGroup = game.make.group(this.puzzleGroup, name + '_backgroundGroup');
+    this.backgroundGroup = game.make.group(this.puzzleGroup,
+      name + '_backgroundGroup');
     this.piecesGroup = game.make.group(this.puzzleGroup, name + "_piecesGroup");
     //fill pieces and backgrounds
     for (let y = 0; y < nPieceHeight; y++){
@@ -28,7 +29,8 @@ class Puzzle{
         const finalY = pieceHeight * y;
         const cropX = pieceWidth * x;
         const cropY = pieceHeight * y;
-        let backgroundImage = game.add.image(finalX, finalY, 'puzzleBackground');
+        let backgroundImage = game.add.image(finalX, finalY,
+          'puzzleBackground');
         this.backgroundGroup.addChild(backgroundImage);
         let piece = new Piece(this.piecesGroup, cropX, cropY,
           pieceWidth, pieceHeight, imageKey, this);
@@ -58,8 +60,6 @@ class Puzzle{
     this.puzzleGroup.position.set(x, y);
     this.rect.x = x;
     this.rect.y = y;
-    this.area.x = x;
-    this.area.y = y;
   }
 
   isSolved(){
@@ -112,8 +112,8 @@ class Puzzle{
 
   }
 
-  randomizePieces(space){
-    let area = this.area;
+  randomizePieces(){
+    let area = this.areaPieces;
     for (let row of this.pieces){
       for (let x = 0; x < row.length; x++){
         let posX = 0;
