@@ -5,7 +5,7 @@ class Piece{
     imageKey, fromPuzzle){
     this.value = 0;
     this.fromPuzzle = fromPuzzle;
-    this.puzzle = null;
+    this.toPuzzle = null;
     let image = game.add.image(0, 0, imageKey);
     group.addChild(image);
     this.image = image;
@@ -25,15 +25,15 @@ class Piece{
   }
 
   isPuzzle(){
-    return this.puzzle !== null;
+    return this.toPuzzle !== null;
   }
 
   getPuzzle(){
-    return this.puzzle;
+    return this.toPuzzle;
   }
 
   setPuzzle(puzzle){
-    this.puzzle = puzzle;
+    this.toPuzzle = puzzle;
     if (puzzle !== null && !puzzle.isSolved()){
       this.image.alpha = 0.5;
       this.image.input.draggable = false;
