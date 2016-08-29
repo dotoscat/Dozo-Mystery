@@ -3,6 +3,7 @@
 class Puzzle{
   constructor(name, imageKey, puzzleX, puzzleY, pieceWidth, pieceHeight){
     this.name = name;
+    this.puzzleGroup = game.make.group(game.world, name + '_puzzleGroup');
     this.pieceWidth = pieceWidth;
     this.pieceHeight = pieceHeight;
     let image = game.cache.getImage(imageKey);
@@ -17,7 +18,8 @@ class Puzzle{
     this.area.inflate(64, 64);
     let pieces = new Array(nPieceHeight);
     this.pieces = pieces;
-    this.backgrounds = [];
+    this.backgroundGroup = game.make.group(this.puzzleGroup, name + '_backgroundGroup');
+    this.piecesGroup = game.make.group(this.puzzleGroup, name + "_piecesGroup");
     //fill pieces and backgrounds
     for (let y = 0; y < nPieceHeight; y++){
       pieces[y] = new Array(nPieceWidth);
@@ -28,9 +30,10 @@ class Puzzle{
         const cropY = pieceHeight * y;
         let backgroundImage = game.add.image(finalX, finalY,
           'puzzleBackground');
-        this.backgrounds.push(backgroundImage);
-        pieces[y][x] = new Piece(finalX, finalY, cropX, cropY,
+        this.backgroundGroup.addChild(backgroundImage);
+        let piece = new Piece(this.piecesGroup, cropX, cropY,
           pieceWidth, pieceHeight, imageKey, this);
+        pieces[y][x] = piece;
       }
     }
     //create the current pieces, a multidimensional array
@@ -42,6 +45,14 @@ class Puzzle{
         currentPieces[y][x] = null;
       }
     }
+  }
+
+  show(){
+    this.puzzleGroup.visible = true;
+  }
+
+  hide(){
+    this.puzzleGroup.visible = false;
   }
 
   isSolved(){
