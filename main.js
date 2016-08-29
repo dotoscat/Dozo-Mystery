@@ -20,9 +20,10 @@ function preload(){
 
 function create(){
   console.log('create');
-  mainPuzzle = new Puzzle('a smile', 'psmile', 64, 64, 32, 32);
+  mainPuzzle = new Puzzle('a smile', 'psmile', 32, 32);
   mainPuzzle.resetCurrentPieces();
   mainPuzzle.randomizePieces();
+  mainPuzzle.setPosition(128, 128);
   /*
   catPuzzle = new Puzzle('kitty!', 'cat', 255, 64, 32, 32);
   catPuzzle.randomizePieces(64);

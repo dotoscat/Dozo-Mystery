@@ -1,7 +1,7 @@
 'use strict';
 
 class Puzzle{
-  constructor(name, imageKey, puzzleX, puzzleY, pieceWidth, pieceHeight){
+  constructor(name, imageKey, pieceWidth, pieceHeight){
     this.name = name;
     this.puzzleGroup = game.make.group(game.world, name + '_puzzleGroup');
     this.pieceWidth = pieceWidth;
@@ -13,8 +13,8 @@ class Puzzle{
     let nPieceHeight = imageHeight / pieceHeight;
     this.nPieceWidth = nPieceWidth;
     this.nPieceHeight = nPieceHeight;
-    this.rect = new Phaser.Rectangle(puzzleX, puzzleY, imageWidth, imageHeight);
-    this.area = new Phaser.Rectangle(puzzleX, puzzleY, imageWidth, imageHeight);
+    this.rect = new Phaser.Rectangle(0, 0, imageWidth, imageHeight);
+    this.area = new Phaser.Rectangle(0, 0, imageWidth, imageHeight);
     this.area.inflate(64, 64);
     let pieces = new Array(nPieceHeight);
     this.pieces = pieces;
@@ -24,12 +24,11 @@ class Puzzle{
     for (let y = 0; y < nPieceHeight; y++){
       pieces[y] = new Array(nPieceWidth);
       for (let x = 0; x < nPieceWidth; x++){
-        const finalX = puzzleX + pieceWidth * x;
-        const finalY = puzzleY + pieceHeight * y;
+        const finalX = pieceWidth * x;
+        const finalY = pieceHeight * y;
         const cropX = pieceWidth * x;
         const cropY = pieceHeight * y;
-        let backgroundImage = game.add.image(finalX, finalY,
-          'puzzleBackground');
+        let backgroundImage = game.add.image(finalX, finalY, 'puzzleBackground');
         this.backgroundGroup.addChild(backgroundImage);
         let piece = new Piece(this.piecesGroup, cropX, cropY,
           pieceWidth, pieceHeight, imageKey, this);
@@ -53,6 +52,14 @@ class Puzzle{
 
   hide(){
     this.puzzleGroup.visible = false;
+  }
+
+  setPosition(x, y){
+    this.puzzleGroup.position.set(x, y);
+    this.rect.x = x;
+    this.rect.y = y;
+    this.area.x = x;
+    this.area.y = y;
   }
 
   isSolved(){
