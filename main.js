@@ -16,7 +16,12 @@ function loadLevels(){
     let name = level.name;
     let image = level.image;
     let width = level.width;
-    let height = level.height
+    let height = level.height;
+    let puzzle = new Puzzle(name, image, width, height);
+    puzzle.randomizePieces();
+    puzzle.setPosition(128, 128);
+    puzzle.hide();
+    puzzles[levelKey] = puzzle;
     console.log(level);
   }
   //next set the pieces
@@ -50,16 +55,11 @@ function preload(){
 }
 
 function create(){
-  let mainPuzzle = new Puzzle('a smile', 'psmile', 32, 32);
-  puzzles['mainPuzzle'] = mainPuzzle;
-  mainPuzzle.resetCurrentPieces();
-  mainPuzzle.randomizePieces();
-  mainPuzzle.setPosition(128, 128);
   puzzleName = game.add.text(0, 0, '', {fill: 'white'});
-  setPuzzle(mainPuzzle);
   button = new Button(250, 300, 'buttonBackground',
   () => {console.log("hello...");}, "Push me!");
   loadLevels();
+  setPuzzle(puzzles['main']);
 }
 
 function update(){
