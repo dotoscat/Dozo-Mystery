@@ -19,6 +19,7 @@ function setPuzzle(puzzle){
   currentPuzzle = puzzle;
   currentPuzzle.show();
   puzzleName.setText(puzzle.getName());
+  puzzleName.x = (WIDTH - puzzleName.width) / 2;
 }
 
 function preload(){
@@ -36,7 +37,7 @@ function create(){
   mainPuzzle.setPosition(128, 128);
   puzzleName = game.add.text(0, 0, '', {fill: 'white'});
   setPuzzle(mainPuzzle);
-  button = new Button(250, 250, 'buttonBackground',
+  button = new Button(250, 300, 'buttonBackground',
   () => {console.log("hello...");}, "Push me!");
 }
 
