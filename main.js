@@ -6,6 +6,7 @@ const HEIGHT = 480;
 let puzzles = {};
 let puzzleName = null;
 let currentPuzzle = null;
+let lastPuzzle = null;
 let button = null;
 
 function loadLevels(){
@@ -43,12 +44,17 @@ function getRandomInteger(min, max){
   return Math.floor( Math.random() * (max - min) + min );
 }
 
+function back(){
+  setPuzzle(lastPuzzle);
+}
+
 function setPuzzle(puzzle){
   if (currentPuzzle !== null) {
     currentPuzzle.hide();
   }
+  lastPuzzle = currentPuzzle;
+  button.show();
   currentPuzzle = puzzle;
-  if (puzzle)
   currentPuzzle.show();
   puzzleName.setText(puzzle.getName());
   puzzleName.x = (WIDTH - puzzleName.width) / 2;
@@ -69,8 +75,7 @@ function preload(){
 
 function create(){
   puzzleName = game.add.text(0, 0, '', {fill: 'white'});
-  button = new Button(250, 300, 'buttonBackground',
-  () => {console.log("hello...");}, "Push me!");
+  button = new Button(250, 300, 'buttonBackground', back, "Back");
   button.hide();
   loadLevels();
   setPuzzle(puzzles['main']);

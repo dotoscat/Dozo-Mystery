@@ -68,7 +68,7 @@ class Piece{
   static onClick(image, pointer){
     let piece = image.data;
     if (piece.isPuzzle()) {
-      console.log("Another puzzle!");
+      setPuzzle(piece.getPuzzle());
     }
   }
 
