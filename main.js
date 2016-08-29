@@ -22,11 +22,17 @@ function setPuzzle(puzzle){
   puzzleName.x = (WIDTH - puzzleName.width) / 2;
 }
 
+let images = [
+  'buttonBackground',
+  'cat',
+  'psmile',
+  'puzzleBackground'
+]
+
 function preload(){
-  game.load.image('buttonBackground', 'buttonBackground.png');
-  game.load.image('psmile', 'psmile.png');
-  game.load.image('cat', 'cat.png');
-  game.load.image('puzzleBackground', 'puzzleBackground.png');
+  for (let image of images){
+    game.load.image(image, image + '.png');
+  }
 }
 
 function create(){
