@@ -8,6 +8,20 @@ let puzzleName = null;
 let currentPuzzle = null;
 let button = null;
 
+function loadLevels(){
+  let levelsKeyArray = Object.keys(levels);
+  //First create the puzzles
+  for (let levelKey of levelsKeyArray){
+    let level = levels[levelKey];
+    let name = level.name;
+    let image = level.image;
+    let width = level.width;
+    let height = level.height
+    console.log(level);
+  }
+  //next set the pieces
+}
+
 function getRandomInteger(min, max){
   return Math.floor( Math.random() * (max - min) + min );
 }
@@ -45,6 +59,7 @@ function create(){
   setPuzzle(mainPuzzle);
   button = new Button(250, 300, 'buttonBackground',
   () => {console.log("hello...");}, "Push me!");
+  loadLevels();
 }
 
 function update(){
