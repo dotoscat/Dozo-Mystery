@@ -1,4 +1,4 @@
-console.log("hello...");
+'use strict';
 
 let levels = {
   main: {
