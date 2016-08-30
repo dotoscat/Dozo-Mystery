@@ -1,6 +1,6 @@
 console.log("hello...");
 
-var levels = {
+let levels = {
   main: {
     name: 'First of all...',
     image: 'psmile',

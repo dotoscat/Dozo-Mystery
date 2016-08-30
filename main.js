@@ -5,9 +5,10 @@ const HEIGHT = 480;
 
 let puzzles = {};
 let puzzleName = null;
+let mainPuzzle = null;
 let currentPuzzle = null;
 let lastPuzzle = null;
-let button = null;
+let backButton = null;
 
 function loadLevels(){
   let levelsKeyArray = Object.keys(levels);
@@ -49,13 +50,15 @@ function back(){
 }
 
 function setPuzzle(puzzle){
-  if (currentPuzzle !== null) {
-    currentPuzzle.hide();
-  }
+  if (currentPuzzle !== null) currentPuzzle.hide();
+  puzzle.show();
   lastPuzzle = currentPuzzle;
-  button.show();
   currentPuzzle = puzzle;
-  currentPuzzle.show();
+  if (puzzle === mainPuzzle){
+    backButton.hide();
+  }else{
+    backButton.show();
+  }
   puzzleName.setText(puzzle.getName());
   puzzleName.x = (WIDTH - puzzleName.width) / 2;
 }
@@ -75,9 +78,10 @@ function preload(){
 
 function create(){
   puzzleName = game.add.text(0, 0, '', {fill: 'white'});
-  button = new Button(250, 300, 'buttonBackground', back, "Back");
-  button.hide();
+  backButton = new Button(250, 300, 'buttonBackground', back, "Back");
+  backButton.hide();
   loadLevels();
+  mainPuzzle = puzzles['main'];
   setPuzzle(puzzles['main']);
 }
 
