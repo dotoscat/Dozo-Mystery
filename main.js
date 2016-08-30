@@ -67,7 +67,8 @@ let images = [
   'buttonBackground',
   'cat',
   'psmile',
-  'puzzleBackground'
+  'puzzleBackground',
+  'gameBackground'
 ]
 
 function preload(){
@@ -77,6 +78,7 @@ function preload(){
 }
 
 function create(){
+  game.add.tileSprite(0, 0, WIDTH, HEIGHT, 'gameBackground');
   puzzleName = game.add.text(0, 0, '', {fill: 'white'});
   backButton = new Button(250, 300, 'buttonBackground', back, "Back");
   backButton.hide();
