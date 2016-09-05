@@ -24,6 +24,16 @@ class Piece{
     image.events.onInputUp.add(Piece.onClick, this);
   }
 
+  markToBeSolved(){
+    this.image.alpha = 0.5;
+    this.image.input.draggable = false;
+  }
+
+  unmarkToBeSolved(){
+    this.image.alpha = 1.0;
+    this.image.input.draggable = true;
+  }
+
   isPuzzle(){
     return this.toPuzzle !== null;
   }
@@ -35,12 +45,10 @@ class Piece{
   setPuzzle(puzzle){
     this.toPuzzle = puzzle;
     if (puzzle !== null && !puzzle.isSolved()){
-      this.image.alpha = 0.5;
-      this.image.input.draggable = false;
+      this.markToBeSolved();
     }
     else if ((puzzle !== null && puzzle.isSolved()) || puzzle === null){
-      this.image.alpha = 1.0;
-      this.image.input.draggable = true;
+      this.unmarkToBeSolved();
     }
   }
 
@@ -60,8 +68,8 @@ class Piece{
       piece.resetPosition();
     }
     if (puzzle.isSolved()){
-      console.log("This puzzle is solved!");
-      //back from this puzzle
+      piece.unmarkToBeSolved();
+      back();
     }
   }
 
