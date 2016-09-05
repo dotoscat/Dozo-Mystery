@@ -2,6 +2,7 @@
 
 class Puzzle{
   constructor(name, imageKey, pieceWidth, pieceHeight){
+    this.parentPiece = null;
     this.name = name;
     this.puzzleGroup = game.make.group(game.world, name + '_puzzleGroup');
     this.pieceWidth = pieceWidth;
@@ -48,6 +49,14 @@ class Puzzle{
     }
   }
 
+  setParentPiece(piece){
+    this.parentPiece = piece;
+  }
+
+  getParentPiece(piece){
+    return this.parentPiece;
+  }
+
   show(){
     this.puzzleGroup.visible = true;
   }
@@ -74,6 +83,10 @@ class Puzzle{
       }
     }
     return solved;
+  }
+
+  checkoutPieces(){
+
   }
 
   setPiece(piece, point){

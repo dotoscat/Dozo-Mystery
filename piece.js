@@ -44,6 +44,7 @@ class Piece{
 
   setPuzzle(puzzle){
     this.toPuzzle = puzzle;
+    puzzle.setParentPiece(this);
     if (puzzle !== null && !puzzle.isSolved()){
       this.markToBeSolved();
     }
@@ -68,7 +69,8 @@ class Piece{
       piece.resetPosition();
     }
     if (puzzle.isSolved()){
-      piece.unmarkToBeSolved();
+      let parentPiece = puzzle.getParentPiece();
+      parentPiece.unmarkToBeSolved();
       back();
     }
   }
