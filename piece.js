@@ -77,7 +77,8 @@ class Piece{
 
   static onClick(image, pointer){
     let piece = image.data;
-    if (piece.isPuzzle()) {
+    let piecePuzzle = piece.getPuzzle();
+    if (piece.isPuzzle() && !piecePuzzle.isSolved()) {
       setPuzzle(piece.getPuzzle());
     }
   }
