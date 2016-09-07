@@ -103,10 +103,10 @@ class Puzzle{
       done = true;
       return done;
     }
-    let pixelX = point.x - this.rect.x;
-    let pixelY = point.y - this.rect.y;
-    let x = Math.floor(pixelX / this.pieceWidth);
-    let y = Math.floor(pixelY / this.pieceHeight);
+    const pixelX = point.x - this.rect.x;
+    const pixelY = point.y - this.rect.y;
+    const x = Math.floor(pixelX / this.pieceWidth);
+    const y = Math.floor(pixelY / this.pieceHeight);
     if (this.currentPieces[y][x] !== null){
       return done;//return false
     }
