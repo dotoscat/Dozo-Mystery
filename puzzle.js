@@ -111,7 +111,7 @@ class Puzzle{
       return done;//return false
     }
     this.currentPieces[y][x] = piece;
-    piece.image.position.set(x * this.pieceWidth, y * this.pieceHeight);
+    piece.setPuzzleXY(x, y);
     done = true;
     return done;
   }

@@ -3,6 +3,8 @@
 class Piece{
   constructor(group, cropX, cropY, width, height,
     imageKey, fromPuzzle){
+    this.puzzleX = -1;
+    this.puzzleY = -1;
     this.value = 0;
     this.fromPuzzle = fromPuzzle;
     this.toPuzzle = null;
@@ -22,6 +24,17 @@ class Piece{
     image.data = this;
     image.events.onDragStop.add(Piece.stopDragging, this);
     image.events.onInputUp.add(Piece.onClick, this);
+  }
+
+  setPuzzleXY(x, y){
+    this.puzzleX = x;
+    this.puzzleY = y;
+    this.image.position.set(x * this.image.width, y * this.image.height);
+  }
+
+  resetPuzzlePosition(){
+    this.puzzleX = -1;
+    this.puzzleY = -1;
   }
 
   markToBeSolved(){
