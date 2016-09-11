@@ -90,30 +90,36 @@ class Puzzle{
   }
 
   setPiece(piece, point){
-    let done = false;
-    //if piece is out of the puzzle...
-    if (!Phaser.Rectangle.containsPoint(this.rect, point)) {
-      for (let row of this.currentPieces) {
-        for (let x = 0; x < row.length; x++){
-          if (row[x] === piece){
-            row[x] = null;
-          }
-        }
-      }
-      done = true;
-      return done;
-    }
     const pixelX = point.x - this.rect.x;
     const pixelY = point.y - this.rect.y;
     const x = Math.floor(pixelX / this.pieceWidth);
     const y = Math.floor(pixelY / this.pieceHeight);
-    if (this.currentPieces[y][x] !== null){
-      return done;//return false
+    const pieceX = piece.puzzleX;
+    const pieceY = piece.puzzleY;
+    const outOfPanel = Phaser.Rectangle.containsPoint(this.rect, point);
+    if (outOfPanel && !piece.isOutOfPuzzle()) {
+      this.currentPieces[pieceY][pieceX] = null;
+      piece.resetPuzzlePosition();
+    }else{
+      if (this.currentPieces[y][x] !== null){
+        let thatPiece = this.currentPieces[y][x];
+        if (piece.isOutOfPuzzle()) {
+          let pieceDragStartPoint = piece.image.input.dragStartPoint;
+          thatPiece.resetPuzzlePosition();
+          thatPiece.setPosition(pieceDragStartPoint.x,
+            pieceDragStartPoint.y);
+        }else{
+          this.currentPieces[pieceY][pieceX] = thatPiece;
+          thatPiece.setPuzzleXY(pieceX, pieceY);
+        }
+      }
+      this.currentPieces[y][x] = piece;
+      piece.setPuzzleXY(x, y);
     }
-    this.currentPieces[y][x] = piece;
-    piece.setPuzzleXY(x, y);
-    done = true;
-    return done;
+  }
+
+  swapPiecePosition(){
+
   }
 
   getPiece(x, y){

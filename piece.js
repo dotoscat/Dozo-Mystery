@@ -51,6 +51,10 @@ class Piece{
     return this.toPuzzle !== null;
   }
 
+  isOutOfPuzzle(){
+    return this.puzzleX === -1 && this.puzzleY === -1;
+  }
+
   getPuzzle(){
     return this.toPuzzle;
   }
@@ -70,6 +74,10 @@ class Piece{
     return this.fromPuzzle;
   }
 
+  setPosition(x, y){
+    this.image.position.set(x, y);
+  }
+
   resetPosition(){
     let pos = this.image.input.dragStartPoint;
     this.image.position.set(pos.x, pos.y);
@@ -78,9 +86,7 @@ class Piece{
   static stopDragging(image, pointer){
     let piece = image.data;
     let puzzle = piece.getParentPuzzle();
-    if (!puzzle.setPiece(piece, pointer)){
-      piece.resetPosition();
-    }
+    puzzle.setPiece(piece, pointer);
     if (puzzle.isSolved()){
       let parentPiece = puzzle.getParentPiece();
       parentPiece.unmarkToBeSolved();
