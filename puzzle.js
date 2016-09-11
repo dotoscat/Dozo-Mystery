@@ -99,7 +99,8 @@ class Puzzle{
       this.currentPieces[pieceY][pieceX] = null;
       piece.resetPuzzlePosition();
     }else{
-      if (this.currentPieces[currentY][currentX] !== null){
+      if (this.currentPieces[currentY][currentX] !== null
+      && this.currentPieces[currentY][currentX] !== piece){
         let thatPiece = this.currentPieces[currentY][currentX];
         if (piece.isOutOfPuzzle()) {
           let pieceDragStartPoint = piece.image.input.dragStartPoint;
