@@ -94,6 +94,8 @@ class Puzzle{
     const currentY = Math.floor((point.y - this.rect.y) / this.pieceHeight);
     const pieceX = piece.puzzleX;
     const pieceY = piece.puzzleY;
+    if (currentX < 0 || currentX > this.nPieceWidth
+    && currentY < 0 || currentY > this.nPieceHeight) return;
     if (!Phaser.Rectangle.containsPoint(this.rect, point)
     && !piece.isOutOfPuzzle()) {
       this.currentPieces[pieceY][pieceX] = null;
