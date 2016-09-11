@@ -99,6 +99,7 @@ class Piece{
     let piecePuzzle = piece.getPuzzle();
     if (piece.isPuzzle() && !piecePuzzle.isSolved()) {
       setPuzzle(piece.getPuzzle());
+      increaseDepth();
     }
   }
 

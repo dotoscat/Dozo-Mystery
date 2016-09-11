@@ -9,6 +9,8 @@ let mainPuzzle = null;
 let currentPuzzle = null;
 let lastPuzzle = null;
 let backButton = null;
+let depth = 1;
+let depthText = null;
 
 function loadLevels(){
   let levelsKeyArray = Object.keys(levels);
@@ -47,6 +49,13 @@ function getRandomInteger(min, max){
 
 function back(){
   setPuzzle(lastPuzzle);
+  depth -= 1;
+  depthText.setText(`Depth ${depth}`);
+}
+
+function increaseDepth(){
+  depth += 1;
+  depthText.setText(`Depth ${depth}`);
 }
 
 function setPuzzle(puzzle){
@@ -80,11 +89,13 @@ function preload(){
 function create(){
   game.add.tileSprite(0, 0, WIDTH, HEIGHT, 'gameBackground');
   puzzleName = game.add.text(0, 0, '', {fill: 'white'});
+  depthText = game.add.text(0, 0, '', {fill: 'white'});
   backButton = new Button(250, 300, 'buttonBackground', back, "Back");
   backButton.hide();
   loadLevels();
   mainPuzzle = puzzles['main'];
   setPuzzle(puzzles['main']);
+  depthText.setText(`Depth ${depth}`);
 }
 
 function update(){
