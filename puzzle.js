@@ -110,14 +110,12 @@ class Puzzle{
           this.currentPieces[pieceY][pieceX] = thatPiece;
           thatPiece.setPuzzleXY(pieceX, pieceY);
         }
+      }else if(!piece.isOutOfPuzzle()) {
+        this.currentPieces[pieceY][pieceX] = null;
       }
       this.currentPieces[currentY][currentX] = piece;
       piece.setPuzzleXY(currentX, currentY);
     }
-  }
-
-  swapPiecePosition(){
-
   }
 
   getPiece(x, y){
