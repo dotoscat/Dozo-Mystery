@@ -95,7 +95,7 @@ class Puzzle{
     const pieceX = piece.puzzleX;
     const pieceY = piece.puzzleY;
     if (currentX < 0 || currentX > this.nPieceWidth
-    && currentY < 0 || currentY > this.nPieceHeight) return;
+    || currentY < 0 || currentY > this.nPieceHeight) return;
     if (!Phaser.Rectangle.containsPoint(this.rect, point)
     && !piece.isOutOfPuzzle()) {
       this.currentPieces[pieceY][pieceX] = null;
