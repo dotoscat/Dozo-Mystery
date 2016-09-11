@@ -90,19 +90,17 @@ class Puzzle{
   }
 
   setPiece(piece, point){
-    const pixelX = point.x - this.rect.x;
-    const pixelY = point.y - this.rect.y;
-    const x = Math.floor(pixelX / this.pieceWidth);
-    const y = Math.floor(pixelY / this.pieceHeight);
+    const currentX = Math.floor((point.x - this.rect.x) / this.pieceWidth);
+    const currentY = Math.floor((point.y - this.rect.y) / this.pieceHeight);
     const pieceX = piece.puzzleX;
     const pieceY = piece.puzzleY;
-    const outOfPanel = Phaser.Rectangle.containsPoint(this.rect, point);
-    if (outOfPanel && !piece.isOutOfPuzzle()) {
+    if (Phaser.Rectangle.containsPoint(this.rect, point)
+    && !piece.isOutOfPuzzle()) {
       this.currentPieces[pieceY][pieceX] = null;
       piece.resetPuzzlePosition();
     }else{
-      if (this.currentPieces[y][x] !== null){
-        let thatPiece = this.currentPieces[y][x];
+      if (this.currentPieces[currentY][currentX] !== null){
+        let thatPiece = this.currentPieces[currentY][currentX];
         if (piece.isOutOfPuzzle()) {
           let pieceDragStartPoint = piece.image.input.dragStartPoint;
           thatPiece.resetPuzzlePosition();
@@ -113,8 +111,8 @@ class Puzzle{
           thatPiece.setPuzzleXY(pieceX, pieceY);
         }
       }
-      this.currentPieces[y][x] = piece;
-      piece.setPuzzleXY(x, y);
+      this.currentPieces[currentY][currentX] = piece;
+      piece.setPuzzleXY(currentX, currentY);
     }
   }
 
