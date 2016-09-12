@@ -1,5 +1,7 @@
 'use strict';
 
+const AUTHOR = 'Oscar Triano \'dotoscat\' @cat_dotoscat';
+
 const WIDTH = 640;
 const HEIGHT = 480;
 
@@ -90,6 +92,8 @@ function create(){
   game.add.tileSprite(0, 0, WIDTH, HEIGHT, 'gameBackground');
   puzzleName = game.add.text(0, 0, '', {fill: 'white'});
   depthText = game.add.text(0, 0, '', {fill: 'white'});
+  let authorText = game.add.text(8, 0, AUTHOR, {fill: 'blue', fontSize: '16px'});
+  authorText.y = HEIGHT - authorText.height;
   backButton = new Button(250, 300, 'buttonBackground', back, "Back");
   backButton.hide();
   loadLevels();
