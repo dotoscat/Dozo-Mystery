@@ -39,11 +39,13 @@ class Piece{
 
   markToBeSolved(){
     this.image.alpha = 0.5;
+    this.image.tint = 0xFF0000;
     this.image.input.draggable = false;
   }
 
   unmarkToBeSolved(){
     this.image.alpha = 1.0;
+    this.image.tint = 0xFFFFFF;
     this.image.input.draggable = true;
   }
 
