@@ -37,9 +37,9 @@ function loadLevels(){
     for (let y = 0; y < pieces.length; y++){
       for (let x = 0; x < pieces[y].length; x++){
         if (pieces[y][x] === null) continue;
-          let piece = puzzle.getPiece(x,y);
-          let key = pieces[y][x];
-          piece.setPuzzle(puzzles[key]);
+        let piece = puzzle.getPiece(x,y);
+        let key = pieces[y][x];
+        piece.setPuzzle(puzzles[key]);
       }
     }
   }
